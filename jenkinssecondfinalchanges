@@ -1,0 +1,56 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building the project completed'
+                echo 'Tool: Maven'
+            }
+        }
+        stage('Unit and Integration Tests') {
+            steps {
+                echo 'Running unit and integration tests completed'
+                echo 'Tools: JUnit, TestNG'
+            }
+        }
+        stage('Code Analysis') {
+            steps {
+                echo 'Performing code analysis completed'
+                echo 'Tool: SonarQube'
+            }
+        }
+        stage('Security Scan') {
+            steps {
+                echo 'Running security scan completed'
+                echo 'Tool: OWASP Dependency-Check'
+            }
+        }
+        stage('Deploy to Staging') {
+            steps {
+                echo 'Deploying to staging server completed'
+                echo 'Deployment Server: AWS EC2 (Staging)'
+            }
+        }
+        stage('Integration Tests on Staging') {
+            steps {
+                echo 'Running integration tests on the staging environment completed'
+                echo 'Tools: Selenium, Cucumber'
+            }
+        }
+        stage('Deploy to Production') {
+            steps {
+                echo 'Deploying to production server completed'
+                echo 'Deployment Server: AWS EC2 (Production)'
+            }
+        }
+    }
+
+    post {
+        success {
+            mail to: 'jnswanya@gmail.com',
+                 subject: "Build status Email",
+                 body: "Build was successful."
+        }
+    }
+}
